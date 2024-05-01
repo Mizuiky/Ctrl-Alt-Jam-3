@@ -34,10 +34,10 @@ public class CtrlGameManager : Singleton<CtrlGameManager>
         _initializeDialogs = new InitializeDialogs();
         _initializeDialogs.Load(_dialogFile);
 
-        _localizationManager.Init();
+        _localizationManager?.Init();
 
-        _uiController.Init();
+        _uiController?.Init();
 
-        _dialogController.Init();
+        _dialogController?.Init();
     }
 }

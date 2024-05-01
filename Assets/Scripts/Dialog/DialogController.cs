@@ -168,7 +168,7 @@ public class DialogController : MonoBehaviour
     {
         _dialogIndex = 0;
 
-        if (_currentNodeDialog.answers.Length > 0)
+        if (_currentNodeDialog?.answers.Length > 0)
         {
             _nextNode = _currentNodeDialog.answers[selectedAnswer].nodeLinkID;
             _dialogPoints += _currentNodeDialog.answers[selectedAnswer].point;
