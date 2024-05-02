@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AM.Abilites {
+namespace JAM.Abilites {
 
   [DisallowMultipleComponent]
   public class WalkingAbility : Ability<WalkingAbility> {

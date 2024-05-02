@@ -2,7 +2,7 @@ using UnityEngine;
 using JAM.Characters;
 using JAM.InputManagement;
 
-namespace AM.Abilites {
+namespace JAM.Abilites {
 
   public interface IAbility {
     void Enter();

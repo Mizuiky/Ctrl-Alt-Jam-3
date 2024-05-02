@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace AM.Abilites {
+namespace JAM.Abilites {
 
 
   [AddComponentMenu("JAM/Abilities/Abilite Manager")]
