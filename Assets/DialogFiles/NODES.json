@@ -1,0 +1,313 @@
+{
+    "nodes":[
+        {
+            "nodeId" : 0,
+            "nextNode": 0,
+            "normalDialogs": [
+                {
+                    "dialog":"zeca_rookie",
+                    "nodePortrait":"zeca"                 
+                },
+                {
+                    "dialog":"waiter_response",
+                    "nodePortrait":"waiter"                   
+                },
+                {
+                    "dialog":"zeca_opening",
+                    "nodePortrait":"zeca"                
+                }
+                ,
+                {
+                    "dialog":"zeca_lastTable",
+                    "nodePortrait":"zeca"                   
+                },
+                {
+                    "dialog":"zeca_theJob",
+                    "nodePortrait":"zeca"                   
+                },
+                {
+                    "dialog":"zeca_orderInstructions",
+                    "nodePortrait":"zeca"                   
+                },
+                {
+                    "dialog":"zeca_rightCounter",
+                    "nodePortrait":"zeca"                   
+                },
+                {
+                    "dialog":"waiter_confident",
+                    "nodePortrait":"waiter"                   
+                },
+                {
+                    "dialog":"zeca_dontMess",
+                    "nodePortrait":"zeca"                   
+                },
+                {
+                    "dialog":"waiter_responseYes",
+                    "nodePortrait":"waiter"                   
+                },
+                {
+                    "dialog":"zeca_getToWork",
+                    "nodePortrait":"zeca"                   
+                },
+                {
+                    "dialog":"zeca_parrot",
+                    "nodePortrait":"zeca"                   
+                }
+            ],
+            "answers":[
+            ]
+        },   
+        {
+            "nodeId" : 1,
+            "nextNode": 0,
+            "normalDialogs": [
+                {
+                    "dialog":"waiter_welcome",
+                    "nodePortrait":"waiter"                 
+                },
+                {
+                    "dialog":"redman_surprised",
+                    "nodePortrait":"redman"                   
+                },
+                {
+                    "dialog":"waiter_darn",
+                    "nodePortrait":"waiter"                
+                }
+                ,
+                {
+                    "dialog":"redman_shocked",
+                    "nodePortrait":"redman"                   
+                },
+                {
+                    "dialog":"waiter_idiot",
+                    "nodePortrait":"waiter"                   
+                },
+                {
+                    "dialog":"redman_alright",
+                    "nodePortrait":"redman"                   
+                },
+                {
+                    "dialog":"redman_goodFood",
+                    "nodePortrait":"redman"                   
+                }
+            ],
+            "answers":[
+                {
+                    "answer": "waiter_goodAnswerGreat",
+                    "point": 5,
+                    "nodeLinkID": 2
+                },
+                {
+                    "answer": "waiter_normalAnswerGetOut",
+                    "point": 0,
+                    "nodeLinkID": 3
+                },
+                {
+                    "answer": "waiter_badAnswerBattle",
+                    "point": -5,
+                    "nodeLinkID": 4
+                }
+            ]
+        },
+        {
+            "nodeId" : 2,
+            "nextNode": 5,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_momHouse",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[             
+            ]
+        },
+        {
+            "nodeId" : 3,
+            "nextNode": 5,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_badMood",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[              
+            ]
+        },
+        {
+            "nodeId" : 4,
+            "nextNode": 5,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_safe",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[               
+            ]
+        },
+        {
+            "nodeId" : 5,
+            "nextNode": 0,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_decidedOrder",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[
+                {
+                    "answer": "waiter_goodAnswerTastePiss",
+                    "point": 5,
+                    "nodeLinkID": 6
+                },   
+                {
+                    "answer": "waiter_normalAnswerMead",
+                    "point": 0,
+                    "nodeLinkID": 7
+                },
+                {
+                    "answer": "waiter_badAnswerAlcohol",
+                    "point": -5,
+                    "nodeLinkID": 8
+                }         
+            ]
+        },
+        {
+            "nodeId" : 6,
+            "nextNode": 9,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_hope",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"redman_convinced",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[               
+            ]
+        },
+        {
+            "nodeId" : 7,
+            "nextNode": 9,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_madalenta",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"redman_bringBeer",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[               
+            ]
+        },
+        {
+            "nodeId" : 8,
+            "nextNode": 9,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_customerOrder",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"redman_workedDays",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[               
+            ]
+        },
+        {
+            "nodeId" : 9,
+            "nextNode": 0,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_hurry",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"redman_serveMyOrder",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[
+                {
+                    "answer": "waiter_goodAnswerSir",
+                    "point": 5,
+                    "nodeLinkID": 0
+                },   
+                {
+                    "answer": "waiter_badAnswerMoney",
+                    "point": 0,
+                    "nodeLinkID": 0
+                },
+                {
+                    "answer": "waiter_normalAnswerKeepQuiet",
+                    "point": -5,
+                    "nodeLinkID": 0
+                }         
+            ]
+        }
+        ,
+        {
+            "nodeId" : 10,
+            "nextNode": 0,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_verySatisfiedAwesome",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"redman_verySatisfiedSpreadToEveryone",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"waiter_verySatisfiedThanks",
+                    "nodePortrait":"waiter"                 
+                }
+            ],
+            "answers":[         
+            ]
+        },
+        {
+            "nodeId" : 11,
+            "nextNode": 0,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_satisfiedDespite",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"redman_satisfiedLetMoney",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"waiter_satisfiedCleanTable",
+                    "nodePortrait":"waiter"                 
+                }
+            ],
+            "answers":[         
+            ]
+        },
+        {
+            "nodeId" : 12,
+            "nextNode": 0,
+            "normalDialogs": [
+                {
+                    "dialog":"redman_dessatisfiedNeverComeBack",
+                    "nodePortrait":"redman"                 
+                },
+                {
+                    "dialog":"waiter_dissatisfiedSucker",
+                    "nodePortrait":"redman"                 
+                }
+            ],
+            "answers":[         
+            ]
+        }
+    ]
+}
+
