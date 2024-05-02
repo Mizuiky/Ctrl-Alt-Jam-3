@@ -1,9 +1,10 @@
 using JAM.Animations;
+using JAM.Characters;
 using UnityEngine;
 
-namespace JAM.Characters {
+namespace JAM.InputManagement {
 
-    [AddComponentMenu("JAM/Characters/Player/Input Handler")]
+    [AddComponentMenu("JAM/InputHandler/Input Handler")]
     [RequireComponent(typeof(Player))]
     [DisallowMultipleComponent]
     public class InputHandler : MonoBehaviour {

@@ -27,6 +27,5 @@ public class NormalDialog
 public class Answer
 {
     public string answer;
-    public int point;
     public int nodeLinkID;
 }

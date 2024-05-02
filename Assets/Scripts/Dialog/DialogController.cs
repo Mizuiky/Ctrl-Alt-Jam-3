@@ -29,7 +29,6 @@ public class DialogController : MonoBehaviour
     public Action<List<Option>> onUpdateOptions;
     public Action onEnableNextButton;
     public Action<Sprite> onChangePortrait;
-    public Action<int> onSendDialogPoints;
 
     private Coroutine _currentCoroutine;
 
@@ -39,11 +38,11 @@ public class DialogController : MonoBehaviour
 
     private int _nextNode;
     private int _dialogIndex;
-    private int _dialogPoints;
 
     public void Init()
     {
         _dialogReference = CtrlGameManager.Instance.InitializeDialogs;
+        CtrlGameManager.Instance.UIController.onContinueDialog += OnContinueDialog;
 
         _currentDialogOptions = new List<Option>()
         {
@@ -59,7 +58,6 @@ public class DialogController : MonoBehaviour
     {
         _isWriting = false;
         _hasAnswered = false;
-        _dialogPoints = 0;
         _dialogIndex = 0;
         _dialogName.value = "";
         _dialogText.value = "";
@@ -82,7 +80,6 @@ public class DialogController : MonoBehaviour
     {
         _isWriting = true;
         _currentNodeDialog = _dialogReference.dialogNodes.nodes[startNode];
-        _dialogPoints = 0;
 
         if (_currentCoroutine != null)
             StopCoroutine(_currentCoroutine);
@@ -92,6 +89,7 @@ public class DialogController : MonoBehaviour
 
     private  IEnumerator WriteCoroutine()
     {
+        //Start dialog opening the box
         onStartDialog.Invoke();
 
         while(_currentNodeDialog != null)
@@ -171,7 +169,6 @@ public class DialogController : MonoBehaviour
         if (_currentNodeDialog?.answers.Length > 0)
         {
             _nextNode = _currentNodeDialog.answers[selectedAnswer].nodeLinkID;
-            _dialogPoints += _currentNodeDialog.answers[selectedAnswer].point;
 
             if (_nextNode != 0)
             {
@@ -234,11 +231,8 @@ public class DialogController : MonoBehaviour
 
         StopCoroutine(WriteCoroutine());
 
-        onSendDialogPoints?.Invoke(_dialogPoints);
-        onEndDialog.Invoke();     
+        onEndDialog.Invoke();
         _isWriting = false;
-
-        Debug.Log("dialog points" + _dialogPoints);
     }
 
     private void ChangePortrait()
