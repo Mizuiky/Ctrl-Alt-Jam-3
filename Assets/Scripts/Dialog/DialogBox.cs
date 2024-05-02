@@ -23,7 +23,6 @@ public class DialogBox : MonoBehaviour
     public void Init()
     {
         SetBoxVisibility(false);
-        ResetFields();
     }
 
     public void SetBoxVisibility(bool isVisible)

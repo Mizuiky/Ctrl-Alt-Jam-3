@@ -98,7 +98,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906583472354032631}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -210,6 +210,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163f6b80fde01494fa1d92bf6f0a71c1, type: 3}
+--- !u!114 &108229295812187378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8186222898005434801, guid: 163f6b80fde01494fa1d92bf6f0a71c1, type: 3}
+  m_PrefabInstance: {fileID: 8078278655419446595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a66bacf29852d479c99a1b128d49ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1277991964586716380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7036761482777581983, guid: 163f6b80fde01494fa1d92bf6f0a71c1, type: 3}
+  m_PrefabInstance: {fileID: 8078278655419446595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a66bacf29852d479c99a1b128d49ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3186086391571415055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6641840865414706508, guid: 163f6b80fde01494fa1d92bf6f0a71c1, type: 3}
+  m_PrefabInstance: {fileID: 8078278655419446595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a66bacf29852d479c99a1b128d49ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9189266798014455991 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1125084987215058420, guid: 163f6b80fde01494fa1d92bf6f0a71c1, type: 3}
@@ -307,6 +340,22 @@ PrefabInstance:
       propertyPath: portrait
       value: 
       objectReference: {fileID: 1052760453321652919}
+    - target: {fileID: 781001027511413046, guid: 059da8d1c562d494d97e1532623a3992, type: 3}
+      propertyPath: _options.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 781001027511413046, guid: 059da8d1c562d494d97e1532623a3992, type: 3}
+      propertyPath: _options.Array.data[0]
+      value: 
+      objectReference: {fileID: 108229295812187378}
+    - target: {fileID: 781001027511413046, guid: 059da8d1c562d494d97e1532623a3992, type: 3}
+      propertyPath: _options.Array.data[1]
+      value: 
+      objectReference: {fileID: 3186086391571415055}
+    - target: {fileID: 781001027511413046, guid: 059da8d1c562d494d97e1532623a3992, type: 3}
+      propertyPath: _options.Array.data[2]
+      value: 
+      objectReference: {fileID: 1277991964586716380}
     - target: {fileID: 4192024023146444505, guid: 059da8d1c562d494d97e1532623a3992, type: 3}
       propertyPath: m_Name
       value: DialogBox
