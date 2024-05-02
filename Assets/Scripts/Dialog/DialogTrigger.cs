@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogTrigger : MonoBehaviour
@@ -12,12 +10,12 @@ public class DialogTrigger : MonoBehaviour
     [SerializeField]
     private KeyCode _dialogKey;
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
        
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerStay2D(Collider2D other)
     { 
         if (_dialogRoot != -1)
         {
@@ -33,7 +31,7 @@ public class DialogTrigger : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit2D(Collider2D other)
     {
         CtrlGameManager.Instance.DialogController.OnEndDialog();
         hasDialogStarted = false;    

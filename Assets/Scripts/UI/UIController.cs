@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class UIController : MonoBehaviour
 {
     [SerializeField]
     private DialogBox _dialogBox;
+
+    public Action onContinueDialog;
 
     public void Init()
     {
@@ -56,6 +59,12 @@ public class UIController : MonoBehaviour
         Debug.Log($"next dialog index: {option}");
         CtrlGameManager.Instance.DialogController.ChangeToNextDialog(option);
     }
+
+    public void OnContinueDialog()
+    {
+        onContinueDialog?.Invoke();
+    }
+
     #endregion
 
     private void OnDisable()
