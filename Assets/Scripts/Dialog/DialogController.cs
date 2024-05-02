@@ -8,27 +8,27 @@ public class DialogController : MonoBehaviour
     [SerializeField] private SOText _dialogText;
     [SerializeField] private SOText _dialogName;
 
-    [SerializeField] private float _timeBetweenwords = 0.03f;
+    [SerializeField] private float _timeBetweenLetters = 0.03f;
 
     private int _nextNode;
     private int _dialogIndex;
 
-    private Node _currentNodeDialog;
+    private Node _currentNode;
     private Sprite _nodePortrait;
     private Coroutine _currentCoroutine;
-    private List<Option> _currentDialogOptions;
+    private List<Option> _currentOptions;
     private InitializeDialogs _dialogReference;
 
     public Action onStartDialog;
     public Action onEndDialog;
-    public Action<List<Option>> onUpdateOptions;
     public Action onEnableNextButton;
+    public Action<List<Option>> onUpdateOptions;
     public Action<Sprite> onChangePortrait;
 
     private char[] _dialogLetters;
   
     private bool _isWriting;
-    private bool _hasAnswered;
+    private bool _goToNextNode;
     public bool IsWriting { get { return _isWriting; } }
 
     public void Init()
@@ -37,7 +37,7 @@ public class DialogController : MonoBehaviour
 
         _dialogReference = CtrlGameManager.Instance.InitializeDialogs;
 
-        _currentDialogOptions = new List<Option>()
+        _currentOptions = new List<Option>()
         {
             new Option(),
             new Option(),
@@ -50,28 +50,28 @@ public class DialogController : MonoBehaviour
     public void Reset()
     {
         _isWriting = false;
-        _hasAnswered = false;
+        _goToNextNode = false;
         _dialogIndex = 0;
         _dialogName.value = "";
         _dialogText.value = "";
-        _currentNodeDialog = null;
+        _currentNode = null;
 
         ResetOptions();
     }
 
     private void ResetOptions()
     {
-        for (int i = 0; i < _currentDialogOptions.Count; i++)
+        for (int i = 0; i < _currentOptions.Count; i++)
         {
-            _currentDialogOptions[i].text = "";
-            _currentDialogOptions[i].index = -1;
+            _currentOptions[i].text = "";
+            _currentOptions[i].index = -1;
         }
     }
 
     public void StartDialog(int startNode)
     {
         _isWriting = true;
-        _currentNodeDialog = _dialogReference.dialogNodes.nodes[startNode];
+        _currentNode = _dialogReference.dialogNodes.nodes[startNode];
 
         if (_currentCoroutine != null)
             StopCoroutine(_currentCoroutine);
@@ -84,25 +84,26 @@ public class DialogController : MonoBehaviour
         //Start dialog opening the box
         onStartDialog.Invoke();
 
-        while(_currentNodeDialog != null)
+        while(_currentNode != null)
         {
-            _hasAnswered = false;
+            _goToNextNode = false;
 
             _dialogName.value = "";
             _dialogText.value = "";
 
             #region Set Dialog Components
-            if (_currentNodeDialog.normalDialogs.Length > 0 && _dialogIndex < _currentNodeDialog.normalDialogs.Length)
+            if (_currentNode.normalDialogs.Length > 0 && _dialogIndex < _currentNode.normalDialogs.Length)
             {
-                UpdateDialog(_currentNodeDialog.normalDialogs[_dialogIndex].dialog, _currentNodeDialog.normalDialogs[_dialogIndex].nodePortrait);
+                UpdateDialog(_currentNode.normalDialogs[_dialogIndex].dialog, _currentNode.normalDialogs[_dialogIndex].nodePortrait);
                 ChangePortrait();
 
                 _dialogIndex++;
 
-                if(_dialogIndex >= _currentNodeDialog.normalDialogs.Length)
+                //If node has answers, set them after all normal dialogs have been played, if not then just enable next button to go to next dialog
+                if(_dialogIndex >= _currentNode.normalDialogs.Length && _currentNode.answers.Length > 0)
                 {
                     ResetOptions();
-                    OnUpdateOptions(_currentNodeDialog.answers);
+                    OnUpdateOptions(_currentNode.answers);
                 }
                 else
                     onEnableNextButton?.Invoke();      
@@ -111,14 +112,14 @@ public class DialogController : MonoBehaviour
             {
                 _dialogIndex = 0;
 
-                if (_currentNodeDialog.nextNode == 0 && _currentNodeDialog.answers.Length == 0)
+                if (_currentNode.nextNode == 0 && _currentNode.answers.Length == 0)
                     OnEndDialog();
 
                 else
                 {
-                    UpdateDialog(_currentNodeDialog.normalDialogs[_dialogIndex].dialog, _currentNodeDialog.normalDialogs[_dialogIndex].nodePortrait);
+                    UpdateDialog(_currentNode.normalDialogs[_dialogIndex].dialog, _currentNode.normalDialogs[_dialogIndex].nodePortrait);
                     ResetOptions();
-                    OnUpdateOptions(_currentNodeDialog.answers);
+                    OnUpdateOptions(_currentNode.answers);
                 }
             }
             #endregion
@@ -129,14 +130,14 @@ public class DialogController : MonoBehaviour
             foreach (char letter in _dialogLetters)
             {
                 _dialogText.value = _dialogText.value + letter;
-                yield return new WaitForSeconds(_timeBetweenwords);
+                yield return new WaitForSeconds(_timeBetweenLetters);
             }
 
             _isWriting = false;
 
-            Debug.Log("waiting for answer...");
-            yield return new WaitUntil(() => _hasAnswered || _currentNodeDialog == null);
-            Debug.Log("answered");
+            Debug.Log("waiting for answer ou click next Button...");
+            yield return new WaitUntil(() => _goToNextNode || _currentNode == null);
+            Debug.Log("answered or clicked next Button");
             #endregion
         }     
     }
@@ -145,37 +146,37 @@ public class DialogController : MonoBehaviour
     {
         for (int i = 0; i < answers.Length; i++)
         {      
-            _currentDialogOptions[i].text = "";
-            _currentDialogOptions[i].text = GetKeyTranslation(answers[i].answer);
+            _currentOptions[i].text = "";
+            _currentOptions[i].text = GetKeyTranslation(answers[i].answer);
 
-            _currentDialogOptions[i].index = i;     
+            _currentOptions[i].index = i;     
         }
 
-        onUpdateOptions?.Invoke(_currentDialogOptions);
+        onUpdateOptions?.Invoke(_currentOptions);
     }
 
     private void ChangeCurrentNode(int selectedAnswer)
     {
         _dialogIndex = 0;
 
-        if (_currentNodeDialog?.answers.Length > 0)
+        if (_currentNode?.answers.Length > 0)
         {
-            _nextNode = _currentNodeDialog.answers[selectedAnswer].nodeLinkID;
+            _nextNode = _currentNode.answers[selectedAnswer].nodeLinkID;
 
             if (_nextNode != 0)
             {
-                _currentNodeDialog = _dialogReference.dialogNodes.nodes[_nextNode];
-                _hasAnswered = true;
+                _currentNode = _dialogReference.dialogNodes.nodes[_nextNode];
+                _goToNextNode = true;
             }
             else
                 OnEndDialog();
         }
         else
         {
-            if(_currentNodeDialog.nextNode > 0)
+            if(_currentNode.nextNode > 0)
             {
-                _currentNodeDialog = _dialogReference.dialogNodes.nodes[selectedAnswer];
-                _hasAnswered = true;
+                _currentNode = _dialogReference.dialogNodes.nodes[selectedAnswer];
+                _goToNextNode = true;
             }
             else
                 OnEndDialog();
@@ -193,32 +194,29 @@ public class DialogController : MonoBehaviour
     {
         if (!_isWriting)
         {
-            if (_currentNodeDialog.normalDialogs.Length > 0)
-            {
-                if (_dialogIndex < _currentNodeDialog.normalDialogs.Length)
-                    _hasAnswered = true;
+            if (_dialogIndex < _currentNode.normalDialogs.Length)
+                _goToNextNode = true;
 
-                else if(_currentNodeDialog.answers.Length > 0)
-                    return;
-       
-                else if (_currentNodeDialog.nextNode == 0)
-                    OnEndDialog();
-                    
-                else
-                {
-                    _nextNode = _currentNodeDialog.nextNode;
-                    _currentNodeDialog = _dialogReference.dialogNodes.nodes[_nextNode];
-                    _dialogIndex = 0;
-                    _hasAnswered = true;
-                }                                 
-            }
+            else if (_currentNode.answers.Length > 0)
+                return;
+
+            else if (_currentNode.nextNode == 0)
+                OnEndDialog();
+
+            else
+            {
+                _nextNode = _currentNode.nextNode;
+                _currentNode = _dialogReference.dialogNodes.nodes[_nextNode];
+                _dialogIndex = 0;
+                _goToNextNode = true;
+            }                                          
         }
     }
 
     public void OnEndDialog()
     {
-        _hasAnswered = false;
-        _currentNodeDialog = null;
+        _goToNextNode = false;
+        _currentNode = null;
         _dialogIndex = 0;
         _isWriting = false;
 

@@ -1009,10 +1009,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogTrigger
       objectReference: {fileID: 0}
-    - target: {fileID: 8529707192513958804, guid: 68a821da99d902d40b354ec0ef520f4c, type: 3}
-      propertyPath: _dialogRoot
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1197,7 +1193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialogText: {fileID: 11400000, guid: 717960214de5a0644a20412e443a096d, type: 2}
   _dialogName: {fileID: 11400000, guid: 3fe292d364cd03647a4ad84da86d5237, type: 2}
-  _timeBetweenwords: 0.03
+  _timeBetweenLetters: 0.03
 --- !u!4 &526763836
 Transform:
   m_ObjectHideFlags: 0
@@ -3211,9 +3207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogController: {fileID: 526763835}
-  _dialogFile: {fileID: 4900000, guid: c2fc00c3df94a9b4d89fb4e313187fa9, type: 3}
   _localizationManager: {fileID: 239726320}
   _uiController: {fileID: 6026642105562990353}
+  _dialogFile: {fileID: 4900000, guid: c2fc00c3df94a9b4d89fb4e313187fa9, type: 3}
 --- !u!114 &6026642105562990353
 MonoBehaviour:
   m_ObjectHideFlags: 0
