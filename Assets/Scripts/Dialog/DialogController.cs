@@ -5,24 +5,19 @@ using UnityEngine;
 
 public class DialogController : MonoBehaviour
 {
-    [SerializeField]
-    private SOText _dialogText;
+    [SerializeField] private SOText _dialogText;
+    [SerializeField] private SOText _dialogName;
 
-    [SerializeField]
-    private SOText _dialogName;
+    [SerializeField] private float _timeBetweenwords = 0.03f;
 
-    [SerializeField]
-    private float _timeBetweenwords = 0.03f;
+    private int _nextNode;
+    private int _dialogIndex;
 
     private Node _currentNodeDialog;
-
     private Sprite _nodePortrait;
-
-    private char[] _dialogLetters;
-  
-    private bool _isWriting;
-    private bool _hasAnswered;
-    public bool IsWriting { get { return _isWriting; } }
+    private Coroutine _currentCoroutine;
+    private List<Option> _currentDialogOptions;
+    private InitializeDialogs _dialogReference;
 
     public Action onStartDialog;
     public Action onEndDialog;
@@ -30,19 +25,17 @@ public class DialogController : MonoBehaviour
     public Action onEnableNextButton;
     public Action<Sprite> onChangePortrait;
 
-    private Coroutine _currentCoroutine;
-
-    private List<Option> _currentDialogOptions;
-
-    private InitializeDialogs _dialogReference;
-
-    private int _nextNode;
-    private int _dialogIndex;
+    private char[] _dialogLetters;
+  
+    private bool _isWriting;
+    private bool _hasAnswered;
+    public bool IsWriting { get { return _isWriting; } }
 
     public void Init()
     {
-        _dialogReference = CtrlGameManager.Instance.InitializeDialogs;
         CtrlGameManager.Instance.UIController.onContinueDialog += OnContinueDialog;
+
+        _dialogReference = CtrlGameManager.Instance.InitializeDialogs;
 
         _currentDialogOptions = new List<Option>()
         {
@@ -61,7 +54,6 @@ public class DialogController : MonoBehaviour
         _dialogIndex = 0;
         _dialogName.value = "";
         _dialogText.value = "";
-
         _currentNodeDialog = null;
 
         ResetOptions();
@@ -228,11 +220,11 @@ public class DialogController : MonoBehaviour
         _hasAnswered = false;
         _currentNodeDialog = null;
         _dialogIndex = 0;
+        _isWriting = false;
 
         StopCoroutine(WriteCoroutine());
-
         onEndDialog.Invoke();
-        _isWriting = false;
+        
     }
 
     private void ChangePortrait()

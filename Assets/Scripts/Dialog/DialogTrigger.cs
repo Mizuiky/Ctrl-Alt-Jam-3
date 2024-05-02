@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class DialogTrigger : MonoBehaviour
 {
+    [SerializeField] private int _dialogRoot;
+    [SerializeField] private KeyCode _dialogKey;
+
     private bool hasDialogStarted = false;
-
-    [SerializeField]
-    private int _dialogRoot;
-
-    [SerializeField]
-    private KeyCode _dialogKey;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,7 +20,6 @@ public class DialogTrigger : MonoBehaviour
             {
                 if (other.gameObject.CompareTag("Player"))
                 {
-                    Debug.Log("Trigger Player");
                     hasDialogStarted = true;
                     CtrlGameManager.Instance.DialogController.StartDialog(_dialogRoot);
                 }
