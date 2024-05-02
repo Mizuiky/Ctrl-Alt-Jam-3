@@ -1,3 +1,4 @@
+using JAM.InputManagement;
 using UnityEngine;
 
 namespace JAM.Characters {
