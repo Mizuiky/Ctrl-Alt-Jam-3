@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField]
-    private DialogBox _dialogBox;
+    [SerializeField] private DialogBox _dialogBox;
 
     public Action onContinueDialog;
 

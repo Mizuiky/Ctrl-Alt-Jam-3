@@ -90,5 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd369c70ac5f6b439ce34cc1a79b06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogRoot: 0
+  _dialogRoot: 1
   _dialogKey: 32

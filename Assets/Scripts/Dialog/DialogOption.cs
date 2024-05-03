@@ -1,19 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using System;
 
 public class DialogOption : MonoBehaviour
 {
-    private int optionIndex;
-    public int OptionIndex { get { return optionIndex; } }
-
-    [SerializeField]
-    private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI text;
 
     public static Action<int> onChooseOption;
+    private int optionIndex;
+    public int OptionIndex { get { return optionIndex; } }
 
     public void Init()
     {
