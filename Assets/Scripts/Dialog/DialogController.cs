@@ -108,20 +108,6 @@ public class DialogController : MonoBehaviour
                 else
                     onEnableNextButton?.Invoke();      
             }
-            else
-            {
-                _dialogIndex = 0;
-
-                if (_currentNode.nextNode == 0 && _currentNode.answers.Length == 0)
-                    OnEndDialog();
-
-                else
-                {
-                    UpdateDialog(_currentNode.normalDialogs[_dialogIndex].dialog, _currentNode.normalDialogs[_dialogIndex].nodePortrait);
-                    ResetOptions();
-                    OnUpdateOptions(_currentNode.answers);
-                }
-            }
             #endregion
 
             #region Write Dialog
@@ -135,7 +121,7 @@ public class DialogController : MonoBehaviour
 
             _isWriting = false;
 
-            Debug.Log("waiting for answer ou click next Button...");
+            Debug.Log("waiting for answer or click next Button...");
             yield return new WaitUntil(() => _goToNextNode || _currentNode == null);
             Debug.Log("answered or clicked next Button");
             #endregion
@@ -171,25 +157,15 @@ public class DialogController : MonoBehaviour
             else
                 OnEndDialog();
         }
-        else
-        {
-            if(_currentNode.nextNode > 0)
-            {
-                _currentNode = _dialogReference.dialogNodes.nodes[selectedAnswer];
-                _goToNextNode = true;
-            }
-            else
-                OnEndDialog();
-        }
     }
 
-    //Used when selecting answer
+    //Called when selecting one answer
     public void ChangeToNextDialog(int index)
     {
         ChangeCurrentNode(index);
     }
 
-    //Used for normal dialog
+    //Called when Clicked next button
     public void OnContinueDialog()
     {
         if (!_isWriting)

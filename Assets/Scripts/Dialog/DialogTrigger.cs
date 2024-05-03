@@ -29,7 +29,6 @@ public class DialogTrigger : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        CtrlGameManager.Instance.DialogController.OnEndDialog();
         hasDialogStarted = false;    
     }
 }
