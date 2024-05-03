@@ -162,7 +162,8 @@ public class DialogController : MonoBehaviour
     //Called when selecting one answer
     public void ChangeToNextDialog(int index)
     {
-        ChangeCurrentNode(index);
+        if (!_isWriting)
+            ChangeCurrentNode(index);
     }
 
     //Called when Clicked next button
