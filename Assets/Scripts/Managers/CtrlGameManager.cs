@@ -1,27 +1,17 @@
-
 using UnityEngine;
 
 public class CtrlGameManager : Singleton<CtrlGameManager>
 {
-    #region Dialog
-
-    [SerializeField]
-    private DialogController _dialogController;
-    public DialogController DialogController { get { return _dialogController; } }
+    [SerializeField] private DialogController _dialogController;
+    [SerializeField] private LocalizationManager _localizationManager;
+    [SerializeField] private UIController _uiController;
+    [SerializeField] private TextAsset _dialogFile;
 
     private InitializeDialogs _initializeDialogs;
-    public InitializeDialogs InitializeDialogs { get { return _initializeDialogs; } }
 
-    [SerializeField]
-    private TextAsset _dialogFile;
-    #endregion
-
-    [SerializeField]
-    private LocalizationManager _localizationManager;
+    public DialogController DialogController { get { return _dialogController; } } 
+    public InitializeDialogs InitializeDialogs { get { return _initializeDialogs; } }    
     public LocalizationManager LocalizationManager { get { return _localizationManager; } }
-
-    [SerializeField]
-    private UIController _uiController;
     public UIController UIController { get { return _uiController; } }
 
     public void Start()

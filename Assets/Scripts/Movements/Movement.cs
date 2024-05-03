@@ -7,7 +7,6 @@ namespace JAM.Movements {
   public class Movement : Singleton<Movement> {
 
     private CharacterBase _character;
-    private Transform _render;
     private Rigidbody2D _rigidbody2D;
     private IMovementUpdater _movementEntity;
     private Vector2 velocity;
@@ -16,7 +15,6 @@ namespace JAM.Movements {
 
     public void Awake() {
       _character = GetComponent<CharacterBase>();
-      _render = _character.transform.Find("CharacterBase");
       _movementEntity = _character.characterEvents;
       _movementEntity.OnMovementVelocityNormal().AddListener(OnMovementVelocityNormal);
       _movementEntity.OnMovementPositionNormal().AddListener(OnMovementPositionNormal);

@@ -1,23 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogTrigger : MonoBehaviour
 {
+    [SerializeField] private int _dialogRoot;
+    [SerializeField] private KeyCode _dialogKey;
+
     private bool hasDialogStarted = false;
 
-    [SerializeField]
-    private int _dialogRoot;
-
-    [SerializeField]
-    private KeyCode _dialogKey;
-
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
        
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerStay2D(Collider2D other)
     { 
         if (_dialogRoot != -1)
         {
@@ -25,7 +20,6 @@ public class DialogTrigger : MonoBehaviour
             {
                 if (other.gameObject.CompareTag("Player"))
                 {
-                    Debug.Log("Trigger Player");
                     hasDialogStarted = true;
                     CtrlGameManager.Instance.DialogController.StartDialog(_dialogRoot);
                 }
@@ -33,9 +27,8 @@ public class DialogTrigger : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit2D(Collider2D other)
     {
-        CtrlGameManager.Instance.DialogController.OnEndDialog();
         hasDialogStarted = false;    
     }
 }

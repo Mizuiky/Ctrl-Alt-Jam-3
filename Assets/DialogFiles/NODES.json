@@ -94,17 +94,14 @@
             "answers":[
                 {
                     "answer": "waiter_goodAnswerGreat",
-                    "point": 5,
                     "nodeLinkID": 2
                 },
                 {
                     "answer": "waiter_normalAnswerGetOut",
-                    "point": 0,
                     "nodeLinkID": 3
                 },
                 {
                     "answer": "waiter_badAnswerBattle",
-                    "point": -5,
                     "nodeLinkID": 4
                 }
             ]
@@ -157,17 +154,14 @@
             "answers":[
                 {
                     "answer": "waiter_goodAnswerTastePiss",
-                    "point": 5,
                     "nodeLinkID": 6
                 },   
                 {
                     "answer": "waiter_normalAnswerMead",
-                    "point": 0,
                     "nodeLinkID": 7
                 },
                 {
                     "answer": "waiter_badAnswerAlcohol",
-                    "point": -5,
                     "nodeLinkID": 8
                 }         
             ]
@@ -236,17 +230,14 @@
             "answers":[
                 {
                     "answer": "waiter_goodAnswerSir",
-                    "point": 5,
                     "nodeLinkID": 0
                 },   
                 {
                     "answer": "waiter_badAnswerMoney",
-                    "point": 0,
                     "nodeLinkID": 0
                 },
                 {
                     "answer": "waiter_normalAnswerKeepQuiet",
-                    "point": -5,
                     "nodeLinkID": 0
                 }         
             ]

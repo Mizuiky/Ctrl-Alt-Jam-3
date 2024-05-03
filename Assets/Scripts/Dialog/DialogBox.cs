@@ -1,12 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class DialogBox : MonoBehaviour
 {
+    [SerializeField] private DialogOption[] _options;
+
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialog;
     public Button nextButton;
@@ -17,20 +17,16 @@ public class DialogBox : MonoBehaviour
     public SOText dialogText;
     public SOText dialogName;
 
-    [SerializeField]
-    private DialogOption[] _options;
-
     public void Init()
     {
         SetBoxVisibility(false);
-        ResetFields();
     }
 
     public void SetBoxVisibility(bool isVisible)
     {
         ResetFields();
 
-        this.gameObject.SetActive(isVisible);
+        gameObject.SetActive(isVisible);
         dialogBackground.gameObject.SetActive(isVisible);
         portrait.enabled = isVisible;
     }

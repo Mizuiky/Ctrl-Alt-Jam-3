@@ -45,6 +45,7 @@ public class LocalizationManager : MonoBehaviour
             languages[index].Add(entry.Key, entry.Value);
         }
 
+        //test
         GetTranslation("waiter_verySatisfiedThanks");
     }
 
